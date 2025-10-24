@@ -1,917 +1,109 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ugur Balci - Ingénieur Data Science & Intelligence Artificielle & Mathématiques Appliquées</title>
-    <meta name="description" content="Portfolio d'Ugur Balci, Ingénieur Data Science & Intelligence Artificielle & Mathématiques Appliquées. Entrepreneur, ingénieur et problem-solver basé à Toulouse.">
-    <meta name="keywords" content="Data Science, IA, Machine Learning, Toulouse, Portfolio, Ugur Balci">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amine Belghazi - Data Science, Modélisation & IA</title>
+  <meta name="description" content="Portfolio d'Amine Belghazi, Data Scientist et ingénieur en modélisation mathématique à Lyon.">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-
-<!-- Loading Screen -->
-<div id="loading-screen" class="loading-screen">
+  <!-- Écran de chargement -->
+  <div id="loading-screen" class="loading-screen">
     <canvas id="neuron-canvas"></canvas>
-    <h1 class="loading-text">Ugur Balci</h1>
-</div>
+    <h1 class="loading-text">Amine Belghazi</h1>
+  </div>
 
-<!-- Navigation -->
-<nav id="navigation" class="navigation">
+  <!-- Barre de navigation -->
+  <nav id="navigation" class="navigation">
     <div class="nav-container">
-        <div class="nav-logo" onclick="scrollToSection('hero')">
-            <span class="logo-icon"></span>
-            <span>Ugur Balci</span>
-        </div>
-
-        <!-- Hamburger mobile -->
-        <div class="nav-hamburger" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-
-        <div class="nav-menu">
-            <button class="nav-link" onclick="scrollToSection('about')" data-fr="À propos" data-en="About">À propos</button>
-            <button class="nav-link" onclick="scrollToSection('skills')" data-fr="Compétences" data-en="Skills">Compétences</button>
-            <button class="nav-link" onclick="scrollToSection('experience')" data-fr="Expérience" data-en="Experience">Expérience</button>
-            <button class="nav-link" onclick="scrollToSection('projects')" data-fr="Projets" data-en="Projects">Projets</button>
-            <button class="nav-link" onclick="scrollToSection('contact')" data-fr="Contact" data-en="Contact">Contact</button>
-
-            <div class="language-switcher">
-                <button class="lang-btn active" onclick="switchLanguage('fr')">FR</button>
-                <button class="lang-btn" onclick="switchLanguage('en')">EN</button>
-            </div>
-        </div>
+      <div class="nav-logo" onclick="scrollToSection('hero')">
+        <span>Amine Belghazi</span>
+      </div>
+      <div class="nav-menu">
+        <button class="nav-link" onclick="scrollToSection('about')">À propos</button>
+        <button class="nav-link" onclick="scrollToSection('skills')">Compétences</button>
+        <button class="nav-link" onclick="scrollToSection('projects')">Projets</button>
+        <button class="nav-link" onclick="scrollToSection('contact')">Contact</button>
+      </div>
     </div>
-</nav>
-    <!-- Hero Section -->
-    <section id="hero" class="hero-section">
-        <canvas id="particles-canvas" class="particles-canvas"></canvas>
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <p class="hero-greeting" data-fr="Bonjour, je suis" data-en="Hello, I am">Bonjour, je suis</p>
-                    
-                    <h1 class="hero-title">
-                        <span class="title-word" data-fr="Ingénieur" data-en="Data">Ingénieur</span>
-                        <span class="title-word" data-fr="Data" data-en="Science">Data</span>
-                        <span class="title-word" data-fr="Science" data-en="&">Science</span>
-                        <span class="title-word" data-fr="&" data-en="AI">& </span>
-                        <span class="title-word" data-fr="IA" data-en="Engineer">IA</span>
-                    </h1>
-                    
-                    <p class="hero-subtitle" data-fr="Ingénieur • Entrepreneur • Problem-Solver" data-en="Engineer • Entrepreneur • Problem-Solver">Ingénieur • Entrepreneur • Problem-Solver</p>
-                    
-                    <p class="hero-description" data-fr="Actuellement en M2 IMA (Interactions Informatique et Mathématiques pour l’IA) à l’Université Toulouse III – Paul Sabatier, j’ai auparavant suivi un Master en Mathématiques Appliquées à Toulon, acquérant de solides bases en mathématiques et informatique. Je me prépare à devenir ingénieur en Data et Intelligence Artificielle, en travaillant sur l’analyse de données, la modélisation mathématique et le développement d’outils intelligents." data-en="Currently in M2 IMA (Computer and Mathematical Interactions for AI) at Toulouse III – Paul Sabatier University, I previously completed a Master’s in Applied Mathematics in Toulon, gaining strong foundations in math and computer science. I am preparing to become a Data and AI engineer, working on data analysis, mathematical modeling, and intelligent tool development.">Actuellement en M2 IMA (Interactions Informatique et Mathématiques pour l’IA) à l’Université Toulouse III – Paul Sabatier, j’ai auparavant suivi un Master en Mathématiques Appliquées à Toulon, acquérant de solides bases en mathématiques et informatique. Je me prépare à devenir ingénieur en Data et Intelligence Artificielle, en travaillant sur l’analyse de données, la modélisation mathématique et le développement d’outils intelligents.</p>
-                    
-                    <div class="hero-buttons">
-                        <button class="btn btn-primary" onclick="scrollToSection('contact')">
-                            <span>📧</span>
-                            <span data-fr="Recruter" data-en="Hire ">Recruter </span>
-                        </button>
-                        
-                        <button class="btn btn-secondary" onclick="scrollToSection('projects')">
-                            <span>▶️</span>
-                            <span data-fr="Voir Projets" data-en="View Projects">Voir Projets</span>
-                        </button>
-                        
-                        <a href="BALCI_UGUR_CV.pdf" class="btn btn-outline" target="_blank">
-                            <span>⬇️</span>
-                            <span data-fr="Télécharger CV" data-en="Download CV">Télécharger CV</span>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="hero-image">
-                    <img src="https://customer-assets.emergentagent.com/job_tech-resume-53/artifacts/9rusewv9_WhatsApp%20Image%202025-09-08%20at%2021.47.38.jpeg" alt="Ugur Balci" class="profile-image">
-                    <div class="image-glow"></div>
-                </div>
-            </div>
-            
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <h3>2+</h3>
-                    <p data-fr="Entreprises Créées" data-en="Companies Founded">Entreprises Créées</p>
-                </div>
-                <div class="stat-item">
-                    <h3>50+</h3>
-                    <p data-fr="Projets IA & Data Réalisés" data-en="AI & Data Projects Completed">Projets IA & Data Réalisés</p>
-                </div>
-                <div class="stat-item">
-                    <h3>4</h3>
-                    <p data-fr="Langues Parlées" data-en="Languages Spoken">Langues Parlées</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  </nav>
 
-
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title" data-fr="Profil Expert" data-en="Expert Profile">Profil Expert</h2>
-                <p class="section-subtitle" data-fr="L'Expert Data Science que votre entreprise recherche" data-en="The Data Science Expert your company is looking for">L'Expert Data Science que votre entreprise recherche</p>
-            </div>
-            
-            <div class="about-content">
-                <div class="about-text">
-                    <h3 data-fr="Expert Data Science & IA avec Vision Entrepreneuriale" data-en="Data Science & AI Expert with Entrepreneurial Vision">Expert Data Science & IA avec Vision Entrepreneuriale</h3>
-                    <p data-fr="Actuellement en Master 2 IMA à l'Université Toulouse III, je combine excellence académique, expertise technique et vision entrepreneuriale. Fondateur de deux entreprises innovantes, je maîtrise l'écosystème complet de l'Intelligence Artificielle, de la recherche à la mise en production." data-en="Currently in Master 2 IMA at University Toulouse III, I combine academic excellence, technical expertise and entrepreneurial vision. Founder of two innovative companies, I master the complete Artificial Intelligence ecosystem, from research to production deployment.">Actuellement en Master 2 IMA à l'Université Toulouse III, je combine excellence académique, expertise technique et vision entrepreneuriale. Fondateur de deux entreprises innovantes, je maîtrise l'écosystème complet de l'Intelligence Artificielle, de la recherche à la mise en production.</p>
-                    
-                    <div class="expertise-areas">
-                        <h4 data-fr="Domaines d'Expertise" data-en="Areas of Expertise">Domaines d'Expertise</h4>
-                        <div class="expertise-grid">
-                            <div class="expertise-item">
-                                <div class="expertise-icon">🧠</div>
-                                <h5 data-fr="Intelligence Artificielle" data-en="Artificial Intelligence">Intelligence Artificielle</h5>
-                                <p data-fr="Deep Learning, Computer Vision, NLP, MLOps" data-en="Deep Learning, Computer Vision, NLP, MLOps">Deep Learning, Computer Vision, NLP, MLOps</p>
-                            </div>
-                            <div class="expertise-item">
-                                <div class="expertise-icon">💻</div>
-                                <h5 data-fr="Développement Full-Stack" data-en="Full-Stack Development">Développement Full-Stack</h5>
-                                <p data-fr="Python, TensorFlow, PyTorch, API Development" data-en="Python, TensorFlow, PyTorch, API Development">Python, TensorFlow, PyTorch, API Development</p>
-                            </div>
-                            <div class="expertise-item">
-                                <div class="expertise-icon">🗄️</div>
-                                <h5 data-fr="Data Engineering" data-en="Data Engineering">Data Engineering</h5>
-                                <p data-fr="Big Data, SQL, NoSQL, Data Pipelines" data-en="Big Data, SQL, NoSQL, Data Pipelines">Big Data, SQL, NoSQL, Data Pipelines</p>
-                            </div>
-                            <div class="expertise-item">
-                                <div class="expertise-icon">📈</div>
-                                <h5 data-fr="Business Intelligence" data-en="Business Intelligence">Business Intelligence</h5>
-                                <p data-fr="Analyse prédictive, KPI, Data Visualization" data-en="Predictive Analysis, KPI, Data Visualization">Analyse prédictive, KPI, Data Visualization</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="about-highlights">
-                    <div class="highlight-card">
-                        <div class="highlight-icon">🏆</div>
-                        <h4 data-fr="Formation d'Excellence" data-en="Excellence Education">Formation d'Excellence</h4>
-                        <p data-fr="Master en Mathématiques Appliquées & IA (Toulouse III)" data-en="Master in Applied Mathematics & AI (Toulouse III)">Master en Mathématiques Appliquées & IA (Toulouse III)</p>
-                    </div>
-                    
-                    <div class="highlight-card">
-                        <div class="highlight-icon">👥</div>
-                        <h4 data-fr="Entrepreneur Confirmé" data-en="Confirmed Entrepreneur">Entrepreneur Confirmé</h4>
-                        <p data-fr="2 entreprises créées dans l'innovation technologique" data-en="2 companies created in technological innovation">2 entreprises créées dans l'innovation technologique</p>
-                    </div>
-                    
-                    <div class="languages-section">
-                        <h4 data-fr="Langues Maîtrisées" data-en="Languages Mastered">Langues Maîtrisées</h4>
-                        <div class="languages-grid">
-                            <div class="language-item">
-                                <span class="flag">🇫🇷</span>
-                                <div>
-                                    <h5 data-fr="Français" data-en="French">Français</h5>
-                                    <p data-fr="Natif" data-en="Native">Natif</p>
-                                </div>
-                            </div>
-                            <div class="language-item">
-                                <span class="flag">🇹🇷</span>
-                                <div>
-                                    <h5 data-fr="Turc" data-en="Turkish">Turc</h5>
-                                    <p data-fr="Natif" data-en="Native">Natif</p>
-                                </div>
-                            </div>
-                            <div class="language-item">
-                                <span class="flag">🇬🇧</span>
-                                <div>
-                                    <h5 data-fr="Anglais" data-en="English">Anglais</h5>
-                                    <p data-fr="Courant" data-en="Fluent">Courant</p>
-                                </div>
-                            </div>
-                            <div class="language-item">
-                                <span class="flag">🇩🇪</span>
-                                <div>
-                                    <h5 data-fr="Allemand" data-en="German">Allemand</h5>
-                                    <p data-fr="Intermédiaire" data-en="Intermediate">Intermédiaire</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-<!-- Education Section -->
-<section id="education" class="experience-section">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title" data-fr="Formation" data-en="Education">Formation</h2>
-            <p class="section-subtitle" data-fr="Parcours Académique et Diplômes" data-en="Academic Background & Degrees">Parcours Académique et Diplômes</p>
-        </div>
-
-        <canvas id="education-particles" class="particles-canvas"></canvas>
-
-        <div class="experience-timeline">
-            <!-- M2 IMA - actuel -->
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3>Université de Toulouse</h3>
-                    <span class="timeline-role" data-fr="Master 2 IMA - Interactions Informatique & Mathématiques pour l'IA" data-en="M2 IMA - Interactions of Computer Science & Mathematics for AI">Master 2 IMA - Interactions Informatique & Mathématiques pour l'IA</span>
-                    <div class="timeline-meta">
-                        <span class="timeline-date" data-fr="Sept. 2024 - Présent" data-en="Sept. 2024 - Present">Sept. 2024 - Présent</span>
-                    </div>
-                    <p class="timeline-description" data-fr="Double master IMA combinant MAPI3 et IAFA, formation approfondie en IA, ML, statistiques et développement de solutions complexes." data-en="Double M2 IMA combining MAPI3 & IAFA, advanced training in AI, ML, statistics and complex solution development.">Double master IMA combinant MAPI3 et IAFA, formation approfondie en IA, ML, statistiques et développement de solutions complexes.</p>
-                    <p class="timeline-skills" data-fr="Compétences : Python, C++, C#, IA, Java, ML, Statistiques, Optimisation, Big Data, Data Science" data-en="Skills: Python, C++, C#, AI, Java, ML, Statistics, Optimization, Big Data, Data Science">Compétences : Python, C++, C#, IA, Java, ML, Statistiques, Optimisation, Big Data, Data Science</p>
-                </div>
-            </div>
-
-            <!-- M1 IMA - terminé -->
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3>Université de Toulouse</h3>
-                    <span class="timeline-role" data-fr="Master 1 IMA - Interactions Informatique & Mathématiques" data-en="M1 IMA - Interactions of Computer Science & Mathematics">Master 1 IMA - Interactions Informatique & Mathématiques</span>
-                    <div class="timeline-meta">
-                        <span class="timeline-date" data-fr="Sept. 2023 - Juin 2024" data-en="Sept. 2023 - Jun 2024">Sept. 2023 - Juin 2024</span>
-                    </div>
-                    <p class="timeline-description" data-fr="Programme solide en mathématiques appliquées et informatique pour l’IA, incluant algorithmes, statistiques et optimisation." data-en="Strong program in applied mathematics and computer science for AI, including algorithms, statistics, and optimization.">Programme solide en mathématiques appliquées et informatique pour l’IA, incluant algorithmes, statistiques et optimisation.</p>
-                    <p class="timeline-skills" data-fr="Compétences : Python, C++, IA, Algorithmes, Statistiques, Big Data" data-en="Skills: Python, C++, AI, Algorithms, Statistics, Big Data">Compétences : Python, C++, IA, Algorithmes, Statistiques, Big Data</p>
-                </div>
-            </div>
-
-            <!-- Master Toulon -->
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3>Université de Toulon</h3>
-                    <span class="timeline-role" data-fr="Master Mathématiques appliquées" data-en="Master in Applied Mathematics">Master Mathématiques appliquées</span>
-                    <div class="timeline-meta">
-                        <span class="timeline-date" data-fr="Sept. 2023 - Sept. 2024" data-en="Sept. 2023 - Sept. 2024">Sept. 2023 - Sept. 2024</span>
-                    </div>
-                    <p class="timeline-description" data-fr="Formation en mathématiques appliquées et physique mathématique, couvrant EDP, analyse fonctionnelle et optimisation." data-en="Training in applied mathematics and mathematical physics, covering PDEs, functional analysis, and optimization.">Formation en mathématiques appliquées et physique mathématique, couvrant EDP, analyse fonctionnelle et optimisation.</p>
-                    <p class="timeline-skills" data-fr="Compétences : Probabilités, Processus stochastiques, Modélisation, Optimisation" data-en="Skills: Probability, Stochastic Processes, Modeling, Optimization">Compétences : Probabilités, Processus stochastiques, Modélisation, Optimisation</p>
-                </div>
-            </div>
-
-            <!-- Licence Avignon -->
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3>Avignon Université</h3>
-                    <span class="timeline-role" data-fr="Licence" data-en="Bachelor">Licence</span>
-                    <div class="timeline-meta">
-                        <span class="timeline-date" data-fr="2021 - 2023" data-en="2021 - 2023">2021 - 2023</span>
-                    </div>
-                    <p class="timeline-description" data-fr="Formation généraliste en mathématiques appliquées, statistiques et informatique." data-en="General training in applied mathematics, statistics and computer science.">Formation généraliste en mathématiques appliquées, statistiques et informatique.</p>
-                </div>
-            </div>
-
-            <!-- CPGE -->
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3>Lycée Polyvalent Frédéric Mistral</h3>
-                    <span class="timeline-role" data-fr="Classes préparatoires PCSI-PSI" data-en="Preparatory Classes PCSI-PSI">Classes préparatoires PCSI-PSI</span>
-                    <div class="timeline-meta">
-                        <span class="timeline-date" data-fr="2016 - 2019" data-en="2016 - 2019">2016 - 2019</span>
-                    </div>
-                    <p class="timeline-description" data-fr="Formation intensive en mathématiques, physique et sciences de l’ingénieur pour intégrer les grandes écoles." data-en="Intensive training in mathematics, physics and engineering sciences to enter top schools.">Formation intensive en mathématiques, physique et sciences de l’ingénieur pour intégrer les grandes écoles.</p>
-                </div>
-            </div>
-        </div>
+  <!-- Section Hero -->
+  <section id="hero" class="hero-section">
+    <canvas id="particles-canvas"></canvas>
+    <div class="hero-content">
+      <h1 class="hero-title">Data Scientist & IA</h1>
+      <p class="hero-subtitle">Modélisation • Machine Learning • Analyse de données</p>
+      <p class="hero-description">
+        Étudiant en Master 2 Statistique, Modélisation et Science des Données à Lyon 1, passionné par la data science, la modélisation et le machine learning.
+      </p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary">Me contacter</a>
+        <a href="#projects" class="btn btn-secondary">Voir mes projets</a>
+        <a href="CV_Amine_Belghazi.pdf" target="_blank" class="btn btn-outline">Télécharger CV</a>
+      </div>
     </div>
-</section>
+  </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title" data-fr="Stack Technologique" data-en="Technology Stack">Stack Technologique</h2>
-                <p class="section-subtitle" data-fr="Technologies de Pointe Maîtrisées" data-en="Cutting-edge Technologies Mastered">Technologies de Pointe Maîtrisées</p>
-            </div>
-            
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <div class="category-header">
-                        <div class="category-icon">💻</div>
-                        <h3 data-fr="Langages de Programmation" data-en="Programming Languages">Langages de Programmation</h3>
-                    </div>
-                    <div class="skills-list">
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <span class="skill-icon">🐍</span>
-                                <span class="skill-name">Python</span>
-                                <span class="skill-percentage">95%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="95"></div>
-                            </div>
-                            <p class="skill-description">NumPy, Pandas, Scikit-learn, Matplotlib</p>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <span class="skill-icon">🗄️</span>
-                                <span class="skill-name">SQL</span>
-                                <span class="skill-percentage">90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="90"></div>
-                            </div>
-                            <p class="skill-description">PostgreSQL, MySQL, Query Optimization</p>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <span class="skill-icon">📊</span>
-                                <span class="skill-name">R</span>
-                                <span class="skill-percentage">85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="85"></div>
-                            </div>
-                            <p class="skill-description">ggplot2, dplyr, Statistical Analysis</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skill-category">
-                    <div class="category-header">
-                        <div class="category-icon">🧠</div>
-                        <h3 data-fr="Machine Learning & IA" data-en="Machine Learning & AI">Machine Learning & IA</h3>
-                    </div>
-                    <div class="skills-list">
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <span class="skill-icon">🔥</span>
-                                <span class="skill-name">TensorFlow</span>
-                                <span class="skill-percentage">92%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="92"></div>
-                            </div>
-                            <p class="skill-description">Deep Learning, Neural Networks, Keras</p>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <span class="skill-icon">⚡</span>
-                                <span class="skill-name">PyTorch</span>
-                                <span class="skill-percentage">88%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="88"></div>
-                            </div>
-                            <p class="skill-description">Computer Vision, NLP, Research</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="skill-category">
-                    <div class="category-header">
-                        <div class="category-icon">☁️</div>
-                        <h3 data-fr="Data Engineering & Cloud" data-en="Data Engineering & Cloud">Data Engineering & Cloud</h3>
-                    </div>
-                    <div class="skills-list">
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <span class="skill-icon">☁️</span>
-                                <span class="skill-name">AWS</span>
-                                <span class="skill-percentage">82%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="82"></div>
-                            </div>
-                            <p class="skill-description">EC2, S3, SageMaker, Lambda</p>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <span class="skill-icon">🐳</span>
-                                <span class="skill-name">Docker</span>
-                                <span class="skill-percentage">88%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" data-width="88"></div>
-                            </div>
-                            <p class="skill-description">Containerization, Kubernetes, MLOps</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
- <!-- Section Expérience -->
-<section id="experience" class="experience-section">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title" data-fr="Expérience Entrepreneuriale" data-en="Entrepreneurial Experience">Expérience Entrepreneuriale</h2>
-            <p class="section-subtitle" data-fr="Innovation & Leadership Entrepreneurial" data-en="Innovation & Entrepreneurial Leadership">Innovation & Leadership Entrepreneurial</p>
-        </div>
-        
-        <div class="experience-timeline">
-
-<!-- Imphair -->
-<a href="https://www.imphair.eu/" target="_blank" class="timeline-item-link">
-    <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-            <div class="timeline-header">
-                <h3>Imphair</h3>
-                <span class="timeline-role" data-fr="Président - Co-fondateur" data-en="President - Co-founder">Président - Co-fondateur</span>
-                <div class="timeline-meta">
-                    <span class="timeline-date" data-fr="2021 - Présent" data-en="2021 - Present">2021 - Présent</span>
-                    <span class="timeline-status active" data-fr="Entreprise Active" data-en="Active Company">Entreprise Active</span>
-                    <span class="timeline-location" data-fr="Avignon, France" data-en="Avignon, France">Avignon, France</span>
-                </div>
-            </div>
-
-            <p class="timeline-description" 
-               data-fr="Imphair est une entreprise française spécialisée dans la gestion d'un comparateur de cliniques et d'hôtels sur Internet." 
-               data-en="Imphair is a French company specialized in managing an online comparison platform for clinics and hotels.">
-               Imphair est une entreprise française spécialisée dans la gestion d'un comparateur de cliniques et d'hôtels sur Internet.
-            </p>
-
-            <div class="achievements">
-                <h4 data-fr="Réalisations Clés" data-en="Key Achievements">Réalisations Clés</h4>
-                <ul>
-                    <li data-fr="Gestion complète de la plateforme comparateur de cliniques et hôtels" data-en="Full management of the clinics and hotels comparison platform">Gestion complète de la plateforme comparateur de cliniques et hôtels</li>
-                    <li data-fr="Optimisation des processus et expérience utilisateur" data-en="Process optimization and user experience enhancement">Optimisation des processus et expérience utilisateur</li>
-                    <li data-fr="Croissance continue depuis sa création grâce à la stratégie data-driven" data-en="Continuous growth since founding thanks to data-driven strategy">Croissance continue depuis sa création grâce à la stratégie data-driven</li>
-                </ul>
-            </div>
-
-            <div class="technologies">
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">Django</span>
-                <span class="tech-tag">PostgreSQL</span>
-                <span class="tech-tag">React</span>
-                <span class="tech-tag">AWS</span>
-            </div>
-        </div>
+  <!-- À propos -->
+  <section id="about" class="about-section">
+    <div class="section-header">
+      <h2>Profil</h2>
+      <p>Passionné par la Data Science et la modélisation</p>
     </div>
-</a>
+    <p>
+      J’ai une solide formation en mathématiques appliquées et en machine learning. Mes projets m’ont permis d’explorer
+      les domaines du deep learning, du traitement d’images et de l’analyse statistique.
+    </p>
+  </section>
 
-
-            <!-- Butob -->
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <div class="timeline-header">
-                        <h3>Butob</h3>
-                        <span class="timeline-role" data-fr="Fondateur" data-en="Founder">Fondateur</span>
-                        <div class="timeline-meta">
-                            <span class="timeline-date" data-fr="2019 - 2021" data-en="2019 - 2021">2019 - 2021</span>
-                            <span class="timeline-status inactive" data-fr="Entreprise Fermée" data-en="Closed Company">Entreprise Fermée</span>
-                            <span class="timeline-location" data-fr="Turquie" data-en="Turkey">Turquie</span>
-                        </div>
-                    </div>
-                    
-                    <p class="timeline-description" 
-                       data-fr="Startup spécialisée dans la vente B2B, conseil en communication web et gestion de portefeuille clients. Activités principales : télévente, prospection, salons professionnels, suivi après-vente." 
-                       data-en="Startup specialized in B2B sales, web communication consulting and client portfolio management. Main activities: telesales, prospecting, professional fairs, post-sales follow-up.">
-                       Startup spécialisée dans la vente B2B, conseil en communication web et gestion de portefeuille clients. 
-                       Activités principales : télévente, prospection, salons professionnels, suivi après-vente.
-                    </p>
-                    
-                    <div class="achievements">
-                        <h4 data-fr="Réalisations Clés" data-en="Key Achievements">Réalisations Clés</h4>
-                        <ul>
-                            <li data-fr="Développement de la prospection et gestion d’un portefeuille clients Francophone et Turcophone" data-en="Developed prospecting and managed a Francophone and Turkish client portfolio">Développement de la prospection et gestion d’un portefeuille clients Francophone et Turcophone</li>
-                            <li data-fr="Ventes B2B et conseil en communication Web" data-en="B2B sales and web communication consulting">Ventes B2B et conseil en communication Web</li>
-                            <li data-fr="Organisation de salons et suivi des clients après-vente" data-en="Organized trade fairs and post-sales client follow-up">Organisation de salons et suivi des clients après-vente</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="technologies">
-                        <span class="tech-tag">Ventes</span>
-                        <span class="tech-tag">Prospection</span>
-                        <span class="tech-tag">Marketing Digital</span>
-                        <span class="tech-tag">CRM</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+  <!-- Compétences -->
+  <section id="skills" class="skills-section">
+    <div class="section-header">
+      <h2>Compétences Techniques</h2>
     </div>
-</section>
+    <ul class="skills-list">
+      <li>Python, R, SQL, MATLAB</li>
+      <li>Scikit-Learn, TensorFlow, PyTorch</li>
+      <li>Git, Jupyter, LaTeX</li>
+    </ul>
+  </section>
 
-
-
-<section id="projects" class="projects-section">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title" data-fr="Portfolio Projets" data-en="Projects Portfolio">Portfolio Projets</h2>
-            <p class="section-subtitle" data-fr="Projets & Réalisations Techniques d'Excellence" data-en="Technical Projects & Outstanding Achievements">
-                Projets & Réalisations Techniques d'Excellence
-            </p>
-        </div>
-
-        <div class="projects-grid">
-
-            <!-- Projet 1: Introduction au traitement du signal (Phare) -->
-            <div class="project-card featured">
-                <div class="project-badge" data-fr="Projet Phare" data-en="Featured Project">Projet Phare</div>
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop" alt="Introduction au traitement du signal">
-                    <a href="https://raw.githubusercontent.com/ugurba/Balci/main/Introduction%20au%20traitement%20du%20signal,%20aux%20signaux%20sonores%20et%20aux%20images.ipynb" onclick="downloadFile(event)">
-                        <div class="project-overlay">⬇️</div>
-                    </a>
-                </div>
-                <div class="project-content">
-                    <h3 data-fr="Introduction au traitement du signal" data-en="Signal Processing Introduction">Introduction au traitement du signal</h3>
-                    <p data-fr="Découverte des signaux sonores et images, visualisation et analyse de données numériques." 
-                       data-en="Exploration of audio and image signals, visualization and numerical data analysis.">
-                       Découverte des signaux sonores et images, visualisation et analyse de données numériques.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Jupyter</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Projet 2: OPTIMISATION -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop" alt="OPTIMISATION">
-                    <a href="https://raw.githubusercontent.com/ugurba/Balci/main/OPTIMISATION.ipynb" onclick="downloadFile(event)">
-                        <div class="project-overlay">⬇️</div>
-                    </a>
-                </div>
-                <div class="project-content">
-                    <h3 data-fr="OPTIMISATION" data-en="OPTIMIZATION">OPTIMISATION</h3>
-                    <p data-fr="Résolution de problèmes d’optimisation numériques, algorithmes et fonctions complexes." 
-                       data-en="Solving numerical optimization problems with algorithms and complex functions.">
-                       Résolution de problèmes d’optimisation numériques, algorithmes et fonctions complexes.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Jupyter</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Projet 3: OPTIMISATION2 -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop" alt="OPTIMISATION2">
-                    <a href="https://raw.githubusercontent.com/ugurba/Balci/main/OPTIMISATION2.ipynb" onclick="downloadFile(event)">
-                        <div class="project-overlay">⬇️</div>
-                    </a>
-                </div>
-                <div class="project-content">
-                    <h3 data-fr="OPTIMISATION2" data-en="OPTIMIZATION2">OPTIMISATION2</h3>
-                    <p data-fr="Approfondissement des méthodes d’optimisation avec visualisation et analyse de résultats." 
-                       data-en="Deepening optimization methods with result visualization and analysis.">
-                       Approfondissement des méthodes d’optimisation avec visualisation et analyse de résultats.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Jupyter</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Projet 4: PROBABILITE -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop" alt="PROBABILITE">
-                    <a href="https://raw.githubusercontent.com/ugurba/Balci/main/PROBABILITE.py" onclick="downloadFile(event)">
-                        <div class="project-overlay">⬇️</div>
-                    </a>
-                </div>
-                <div class="project-content">
-                    <h3 data-fr="PROBABILITE" data-en="PROBABILITY">PROBABILITE</h3>
-                    <p data-fr="Travail sur les concepts de probabilités et simulations statistiques en Python." 
-                       data-en="Work on probability concepts and statistical simulations in Python.">
-                       Travail sur les concepts de probabilités et simulations statistiques en Python.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Projet 5: PROBABILITE2 -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop" alt="PROBABILITE2">
-                    <a href="https://raw.githubusercontent.com/ugurba/Balci/main/PROBABILITE2.py" onclick="downloadFile(event)">
-                        <div class="project-overlay">⬇️</div>
-                    </a>
-                </div>
-                <div class="project-content">
-                    <h3 data-fr="PROBABILITE2" data-en="PROBABILITY2">PROBABILITE2</h3>
-                    <p data-fr="Extension des simulations probabilistes et visualisation des distributions." 
-                       data-en="Extension of probabilistic simulations and distribution visualizations.">
-                       Extension des simulations probabilistes et visualisation des distributions.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Projet 6: SIMULATION ALEATOIRE1 -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop" alt="SIMULATION ALEATOIRE1">
-                    <a href="https://raw.githubusercontent.com/ugurba/Balci/main/SIMULATION%20ALEATOIRE1.ipynb" onclick="downloadFile(event)">
-                        <div class="project-overlay">⬇️</div>
-                    </a>
-                </div>
-                <div class="project-content">
-                    <h3 data-fr="SIMULATION ALEATOIRE1" data-en="RANDOM SIMULATION1">SIMULATION ALEATOIRE1</h3>
-                    <p data-fr="Introduction aux simulations aléatoires et tests de Monte-Carlo." 
-                       data-en="Introduction to random simulations and Monte Carlo tests.">
-                       Introduction aux simulations aléatoires et tests de Monte-Carlo.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Jupyter</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Projet 7: SIMULATION ALEATOIRE2 -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop" alt="SIMULATION ALEATOIRE2">
-                    <a href="https://raw.githubusercontent.com/ugurba/Balci/main/SIMULATION%20ALEATOIRE2.ipynb" onclick="downloadFile(event)">
-                        <div class="project-overlay">⬇️</div>
-                    </a>
-                </div>
-                <div class="project-content">
-                    <h3 data-fr="SIMULATION ALEATOIRE2" data-en="RANDOM SIMULATION2">SIMULATION ALEATOIRE2</h3>
-                    <p data-fr="Approfondissement des simulations aléatoires avec statistiques descriptives." 
-                       data-en="Deepening random simulations with descriptive statistics.">
-                       Approfondissement des simulations aléatoires avec statistiques descriptives.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Jupyter</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Projet 8: STATISTIQUE -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop" alt="STATISTIQUE">
-                    <a href="https://raw.githubusercontent.com/ugurba/Balci/main/STATISTIQUE.R" onclick="downloadFile(event)">
-                        <div class="project-overlay">⬇️</div>
-                    </a>
-                </div>
-                <div class="project-content">
-                    <h3 data-fr="STATISTIQUE" data-en="STATISTICS">STATISTIQUE</h3>
-                    <p data-fr="Analyse statistique et visualisation de données avec R." 
-                       data-en="Statistical analysis and data visualization using R.">
-                       Analyse statistique et visualisation de données avec R.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">R</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Projet 9: STATISTIQUE2 -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop" alt="STATISTIQUE2">
-                    <a href="https://raw.githubusercontent.com/ugurba/Balci/main/STATISTIQUE2.R" onclick="downloadFile(event)">
-                        <div class="project-overlay">⬇️</div>
-                    </a>
-                </div>
-                <div class="project-content">
-                    <h3 data-fr="STATISTIQUE2" data-en="STATISTICS2">STATISTIQUE2</h3>
-                    <p data-fr="Extension de l'analyse statistique et manipulation avancée de données." 
-                       data-en="Extension of statistical analysis and advanced data manipulation.">
-                       Extension de l'analyse statistique et manipulation avancée de données.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">R</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Projet 10: Science des données -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop" alt="Science des données">
-                    <a href="https://raw.githubusercontent.com/ugurba/Balci/main/Science%20des%20données.ipynb" onclick="downloadFile(event)">
-                        <div class="project-overlay">⬇️</div>
-                    </a>
-                </div>
-                <div class="project-content">
-                    <h3 data-fr="Science des données" data-en="Data Science">Science des données</h3>
-                    <p data-fr="Projet complet de data science, nettoyage et visualisation de données." 
-                       data-en="Complete data science project with data cleaning and visualization.">
-                       Projet complet de data science, nettoyage et visualisation de données.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Jupyter</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Projet 11: Science_des_données2 -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop" alt="Science_des_données2">
-                    <a href="https://raw.githubusercontent.com/ugurba/Balci/main/Science_des_données2.ipynb" onclick="downloadFile(event)">
-                        <div class="project-overlay">⬇️</div>
-                    </a>
-                </div>
-                <div class="project-content">
-                    <h3 data-fr="Science des données 2" data-en="Data Science 2">Science des données 2</h3>
-                    <p data-fr="Suite du projet data science avec analyses avancées et visualisations dynamiques." 
-                       data-en="Continuation of the data science project with advanced analyses and dynamic visualizations.">
-                       Suite du projet data science avec analyses avancées et visualisations dynamiques.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Jupyter</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Projet 12: TP1_BALCI_FRI_IAFA -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop" alt="TP1_BALCI_FRI_IAFA">
-                    <a href="https://raw.githubusercontent.com/ugurba/Balci/main/TP1_BALCI_FRI_IAFA.ipynb" onclick="downloadFile(event)">
-                        <div class="project-overlay">⬇️</div>
-                    </a>
-                </div>
-                <div class="project-content">
-                    <h3 data-fr="TP1 BALCI FRI IAFA" data-en="TP1 BALCI FRI IAFA">TP1 BALCI FRI IAFA</h3>
-                    <p data-fr="Introduction à l'apprentissage automatique et aux modèles supervisés." 
-                       data-en="Introduction to machine learning and supervised models.">
-                       Introduction à l'apprentissage automatique et aux modèles supervisés.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Jupyter</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Projet 13: TP2_BALCI_FRI_IAFA -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop" alt="TP2_BALCI_FRI_IAFA">
-                    <a href="https://raw.githubusercontent.com/ugurba/Balci/main/TP2_BALCI_FRI_IAFA.ipynb" onclick="downloadFile(event)">
-                        <div class="project-overlay">⬇️</div>
-                    </a>
-                </div>
-                <div class="project-content">
-                    <h3 data-fr="TP2 BALCI FRI IAFA" data-en="TP2 BALCI FRI IAFA">TP2 BALCI FRI IAFA</h3>
-                    <p data-fr="Application des concepts d'apprentissage supervisé sur des datasets concrets." 
-                       data-en="Application of supervised learning concepts on real datasets.">
-                       Application des concepts d'apprentissage supervisé sur des datasets concrets.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Jupyter</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Projet 14: TP3_BALCI_FRI_IAFA -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop" alt="TP3_BALCI_FRI_IAFA">
-                    <a href="https://raw.githubusercontent.com/ugurba/Balci/main/TP3_BALCI_FRI_IAFA.ipynb" onclick="downloadFile(event)">
-                        <div class="project-overlay">⬇️</div>
-                    </a>
-                </div>
-                <div class="project-content">
-                    <h3 data-fr="TP3 BALCI FRI IAFA" data-en="TP3 BALCI FRI IAFA">TP3 BALCI FRI IAFA</h3>
-                    <p data-fr="Approfondissement des méthodes supervisées et analyse de performances des modèles." 
-                       data-en="Deepening supervised methods and analyzing model performance.">
-                       Approfondissement des méthodes supervisées et analyse de performances des modèles.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Jupyter</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Projet 15: TP5_FRI_IAFA_Balci_Ugur -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop" alt="TP5_FRI_IAFA_Balci_Ugur">
-                    <a href="https://raw.githubusercontent.com/ugurba/Balci/main/TP5_FRI-IAFA_Balci_Ugur.ipynb" onclick="downloadFile(event)">
-                        <div class="project-overlay">⬇️</div>
-                    </a>
-                </div>
-                <div class="project-content">
-                    <h3 data-fr="TP5 FRI IAFA" data-en="TP5 FRI IAFA">TP5 FRI IAFA</h3>
-                    <p data-fr="Mise en œuvre de modèles de classification supervisée : régression logistique, SVM, réseaux de neurones." 
-                       data-en="Implementation of supervised classification models: logistic regression, SVM, neural networks.">
-                       Mise en œuvre de modèles de classification supervisée : régression logistique, SVM, réseaux de neurones.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Jupyter</span>
-                        <span class="tech-tag">Scikit-learn</span>
-                        <span class="tech-tag">Pandas</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+  <!-- Projets -->
+  <section id="projects" class="projects-section">
+    <div class="section-header">
+      <h2>Projets Académiques</h2>
     </div>
-</section>
-
-<script>
-function downloadFile(event) {
-    event.preventDefault();
-    const url = event.currentTarget.href;
-    fetch(url)
-        .then(resp => resp.blob())
-        .then(blob => {
-            const a = document.createElement('a');
-            a.href = window.URL.createObjectURL(blob);
-            const filename = url.split('/').pop();
-            a.download = filename;
-            a.click();
-        });
-}
-</script>
-
-
-
-<!-- Contact Section -->
-<section id="contact" class="contact-section">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Opportunités</h2>
-            <p class="section-subtitle">Prêt à Révolutionner Votre Data Science ?</p>
-        </div>
-        
-        <div class="contact-content">
-            <div class="contact-info">
-                <div class="contact-header">
-                    <h3>Disponible Immédiatement</h3>
-                    <p>🚀 Recherche Opportunités Exceptionnelles</p>
-                </div>
-                
-                <div class="contact-methods">
-                    <!-- Email -->
-                    <div class="contact-method">
-                        <div class="method-icon">📧</div>
-                        <div class="method-content">
-                            <h4>Email Professionnel</h4>
-                            <a href="mailto:ugur.balciccc@gmail.com">ugur.balciccc@gmail.com</a>
-                            <p>Réponse sous 24h</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Téléphone -->
-                    <div class="contact-method">
-                        <div class="method-icon">📱</div>
-                        <div class="method-content">
-                            <h4>Téléphone Direct</h4>
-                            <a href="tel:+33667244140">+33 6 67 24 41 40</a>
-                            <p>Disponible 9h-18h</p>
-                        </div>
-                    </div>
-                    
-                    <!-- LinkedIn -->
-                    <div class="contact-method">
-                        <div class="method-icon">💼</div>
-                        <div class="method-content">
-                            <h4>LinkedIn Professionnel</h4>
-                            <a href="https://www.linkedin.com/in/ugur-balci-569812270">Mon profil LinkedIn</a>
-                            <p>Réseau Professionnel</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Localisation -->
-                    <div class="contact-method">
-                        <div class="method-icon">📍</div>
-                        <div class="method-content">
-                            <h4>Localisation</h4>
-                            <span>Toulouse, France</span>
-                            <p>Mobilité Nationale & Internationale</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="project">
+      <h3>Suivi d’objet par réseaux de neurones</h3>
+      <p>Comparaison entre segmentation variationnelle et Deep Learning (OSVOS). Application de CNN et étude du flot optique.</p>
     </div>
-</section>
-
-<!-- Footer -->
-<footer class="footer">
-    <div class="container">
-        <div class="footer-content">
-            <p>© 2025 Ugur Balci - Tous droits réservés</p>
-        </div>
+    <div class="project">
+      <h3>Étude des tests de normalité</h3>
+      <p>Analyse statistique (Shapiro-Wilk, Chi², Kolmogorov-Smirnov) et lien avec la régression linéaire en R.</p>
     </div>
-</footer>
+  </section>
 
-<!-- Script -->
-<script src="script.js"></script>
+  <!-- Contact -->
+  <section id="contact" class="contact-section">
+    <div class="section-header">
+      <h2>Contact</h2>
+    </div>
+    <ul class="contact-list">
+      <li>📧 <a href="mailto:aminebelghazi@outlook.fr">aminebelghazi@outlook.fr</a></li>
+      <li>📱 <a href="tel:+33766074127">+33 7 66 07 41 27</a></li>
+      <li>💼 <a href="https://www.linkedin.com/in/aminebelghazi" target="_blank">LinkedIn</a></li>
+      <li>📍 Villeurbanne, France</li>
+    </ul>
+  </section>
 
+  <footer class="footer">
+    <p>© 2025 Amine Belghazi - Tous droits réservés</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
