@@ -58,20 +58,21 @@ class Portfolio {
         const animate = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            particles.forEach(p => {
-                p.x += p.vx;
-                p.y += p.vy;
-                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+            particles.forEach(particle => {
+                particle.x += particle.vx;
+                particle.y += particle.vy;
+                if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+                if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
 
                 ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(16, 185, 129, ${p.opacity})`;
+                ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(16, 185, 129, ${particle.opacity})`;
                 ctx.fill();
             });
 
             requestAnimationFrame(animate);
         };
+
         animate();
     }
 
@@ -82,7 +83,7 @@ class Portfolio {
         }
 
         document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', e => {
+            link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const target = link.getAttribute('onclick').match(/'([^']+)'/)[1];
                 this.scrollToSection(target);
@@ -106,6 +107,12 @@ class Portfolio {
                 } else {
                     element.textContent = text;
                 }
+            }
+        });
+
+        document.querySelectorAll('[data-placeholder-fr], [data-placeholder-en]').forEach(element => {
+            if (element.hasAttribute(`data-placeholder-${lang}`)) {
+                element.placeholder = element.getAttribute(`data-placeholder-${lang}`);
             }
         });
     }
@@ -133,55 +140,32 @@ class Portfolio {
 
     initScrollAnimations() {
         const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-
-        const observer = new IntersectionObserver(entries => {
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animate');
-
-                    // ⚙️ Correction : animation des catégories de compétences
-                    if (entry.target.classList.contains('skills-grid')) {
-                        const categories = entry.target.querySelectorAll('.skill-category');
-                        categories.forEach((cat, index) => {
-                            setTimeout(() => {
-                                cat.classList.add('animate');
-                            }, index * 200);
-                        });
-                    }
-
-                    // Animation de la timeline (projets)
                     if (entry.target.classList.contains('experience-timeline')) {
                         const items = entry.target.querySelectorAll('.timeline-item');
-                        items.forEach((item, index) => {
-                            setTimeout(() => item.classList.add('animate'), index * 200);
-                        });
+                        items.forEach((item, index) => setTimeout(() => item.classList.add('animate'), index * 200));
                     }
                 }
             });
         }, observerOptions);
 
-        // 🧩 Correction : ajout explicite de .skills-grid
-        const elementsToObserve = [
-            '.section-header',
-            '.about-text',
-            '.skills-grid',
-            '.experience-timeline',
-            '.contact-content',
-            '.footer-content'
+        const elements = [
+            '.section-header', '.about-text', '.skills-grid',
+            '.experience-timeline', '.projects-grid', '.contact-info', '.footer-content'
         ];
-
-        elementsToObserve.forEach(selector => {
-            document.querySelectorAll(selector).forEach(el => observer.observe(el));
-        });
+        elements.forEach(sel => document.querySelectorAll(sel).forEach(el => observer.observe(el)));
     }
 
     initSkillBars() {
         const observerOptions = { threshold: 0.5, rootMargin: '0px 0px -50px 0px' };
-        const skillObserver = new IntersectionObserver(entries => {
+        const skillObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const skillBars = entry.target.querySelectorAll('.skill-progress');
-                    skillBars.forEach((bar, index) => {
+                    const bars = entry.target.querySelectorAll('.skill-progress');
+                    bars.forEach((bar, index) => {
                         const width = bar.getAttribute('data-width');
                         setTimeout(() => {
                             bar.style.setProperty('--width', width + '%');
@@ -192,9 +176,7 @@ class Portfolio {
             });
         }, observerOptions);
 
-        document.querySelectorAll('.skill-category').forEach(section => {
-            skillObserver.observe(section);
-        });
+        document.querySelectorAll('.skill-category').forEach(sec => skillObserver.observe(sec));
     }
 
     handleContactForm(e) {
@@ -202,11 +184,22 @@ class Portfolio {
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData);
 
-        if (!data.name || !data.email || !data.message) {
+        if (!data.name || !data.email || !data.opportunity || !data.message) {
             this.showNotification(
                 this.currentLang === 'fr'
                     ? 'Veuillez remplir tous les champs obligatoires.'
                     : 'Please fill in all required fields.',
+                'error'
+            );
+            return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(data.email)) {
+            this.showNotification(
+                this.currentLang === 'fr'
+                    ? 'Veuillez entrer une adresse email valide.'
+                    : 'Please enter a valid email address.',
                 'error'
             );
             return;
@@ -218,37 +211,58 @@ class Portfolio {
                 : '✅ Message sent successfully! Amine Belghazi will respond within 24h.',
             'success'
         );
+
         e.target.reset();
     }
 
     showNotification(message, type = 'info') {
         document.querySelectorAll('.notification').forEach(n => n.remove());
-        const notif = document.createElement('div');
-        notif.className = `notification notification-${type}`;
-        notif.textContent = message;
-        document.body.appendChild(notif);
-        notif.style.cssText = `
-            position:fixed;top:100px;right:20px;padding:1rem 1.5rem;
-            border-radius:0.75rem;color:#fff;font-weight:600;font-size:0.95rem;
-            z-index:10000;max-width:400px;opacity:0;transform:translateX(100px);
-            transition:all 0.3s ease;box-shadow:0 10px 40px rgba(0,0,0,0.3);
-        `;
-        const colors = {
-            success: 'linear-gradient(135deg,#10b981,#059669)',
-            error: 'linear-gradient(135deg,#ef4444,#dc2626)',
-            info: 'linear-gradient(135deg,#3b82f6,#2563eb)'
+
+        const notification = document.createElement('div');
+        notification.className = `notification notification-${type}`;
+        notification.textContent = message;
+
+        Object.assign(notification.style, {
+            position: 'fixed',
+            top: '100px',
+            right: '20px',
+            padding: '1rem 1.5rem',
+            borderRadius: '0.75rem',
+            color: '#fff',
+            fontWeight: '600',
+            fontSize: '0.95rem',
+            zIndex: '10000',
+            maxWidth: '400px',
+            opacity: '0',
+            transform: 'translateX(100px)',
+            transition: 'all 0.3s ease',
+            boxShadow: '0 10px 40px rgba(0, 0, 0, 0.3)'
+        });
+
+        const bg = {
+            success: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+            error: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+            info: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)'
         };
-        notif.style.background = colors[type] || colors.info;
+        notification.style.background = bg[type] || bg.info;
+
+        document.body.appendChild(notification);
+        setTimeout(() => {
+            notification.style.opacity = '1';
+            notification.style.transform = 'translateX(0)';
+        }, 100);
 
         setTimeout(() => {
-            notif.style.opacity = '1';
-            notif.style.transform = 'translateX(0)';
-        }, 100);
-        setTimeout(() => {
-            notif.style.opacity = '0';
-            notif.style.transform = 'translateX(100px)';
-            setTimeout(() => notif.remove(), 300);
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateX(100px)';
+            setTimeout(() => notification.remove(), 300);
         }, 5000);
+
+        notification.addEventListener('click', () => {
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateX(100px)';
+            setTimeout(() => notification.remove(), 300);
+        });
     }
 }
 
@@ -270,7 +284,7 @@ document.addEventListener('visibilitychange', () => {
     canvas.style.display = document.hidden ? 'none' : 'block';
 });
 
-// Background animation
+// Neon background animation
 const canvas = document.getElementById('neuron-canvas');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
@@ -283,9 +297,8 @@ for (let i = 0; i < nodeCount; i++) {
         y: Math.random() * canvas.height,
         vx: (Math.random() - 0.5) * 0.5,
         vy: (Math.random() - 0.5) * 0.5,
-        move() {
-            this.x += this.vx;
-            this.y += this.vy;
+        move: function () {
+            this.x += this.vx; this.y += this.vy;
             if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
             if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
         }
@@ -326,10 +339,11 @@ setTimeout(() => {
     const screen = document.getElementById('loading-screen');
     if (screen) {
         screen.style.opacity = '0';
-        setTimeout(() => (screen.style.display = 'none'), 500);
+        setTimeout(() => { screen.style.display = 'none'; }, 500);
     }
 }, 2500);
 
 function toggleMenu() {
-    document.querySelector('.nav-menu').classList.toggle('active');
+    const menu = document.querySelector('.nav-menu');
+    menu.classList.toggle('active');
 }
