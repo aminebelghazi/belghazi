@@ -16,6 +16,7 @@ class Portfolio {
         this.setupNavigation();
     }
 
+    // Écran de chargement
     handleLoading() {
         setTimeout(() => {
             const loadingScreen = document.getElementById('loading-screen');
@@ -29,6 +30,7 @@ class Portfolio {
         }, 1500);
     }
 
+    // Animation de particules vertes (fond Hero)
     initParticles() {
         const canvas = document.getElementById('particles-canvas');
         if (!canvas) return;
@@ -61,6 +63,7 @@ class Portfolio {
             particles.forEach(particle => {
                 particle.x += particle.vx;
                 particle.y += particle.vy;
+
                 if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
                 if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
 
@@ -76,6 +79,7 @@ class Portfolio {
         animate();
     }
 
+    // Gestion des événements
     setupEventListeners() {
         const contactForm = document.getElementById('contact-form');
         if (contactForm) {
@@ -91,6 +95,7 @@ class Portfolio {
         });
     }
 
+    // Changement de langue
     switchLanguage(lang) {
         if (lang === this.currentLang) return;
         this.currentLang = lang;
@@ -109,14 +114,9 @@ class Portfolio {
                 }
             }
         });
-
-        document.querySelectorAll('[data-placeholder-fr], [data-placeholder-en]').forEach(element => {
-            if (element.hasAttribute(`data-placeholder-${lang}`)) {
-                element.placeholder = element.getAttribute(`data-placeholder-${lang}`);
-            }
-        });
     }
 
+    // Défilement fluide
     scrollToSection(sectionId) {
         const element = document.getElementById(sectionId);
         if (element) {
@@ -130,6 +130,7 @@ class Portfolio {
         }
     }
 
+    // Navigation dynamique
     setupNavigation() {
         const nav = document.getElementById('navigation');
         window.addEventListener('scroll', () => {
@@ -138,15 +139,19 @@ class Portfolio {
         });
     }
 
+    // Animation d'apparition au scroll
     initScrollAnimations() {
         const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animate');
+
                     if (entry.target.classList.contains('experience-timeline')) {
                         const items = entry.target.querySelectorAll('.timeline-item');
-                        items.forEach((item, index) => setTimeout(() => item.classList.add('animate'), index * 200));
+                        items.forEach((item, index) =>
+                            setTimeout(() => item.classList.add('animate'), index * 200)
+                        );
                     }
                 }
             });
@@ -154,11 +159,14 @@ class Portfolio {
 
         const elements = [
             '.section-header', '.about-text', '.skills-grid',
-            '.experience-timeline', '.projects-grid', '.contact-info', '.footer-content'
+            '.experience-timeline', '.contact-info', '.footer-content'
         ];
-        elements.forEach(sel => document.querySelectorAll(sel).forEach(el => observer.observe(el)));
+        elements.forEach(sel =>
+            document.querySelectorAll(sel).forEach(el => observer.observe(el))
+        );
     }
 
+    // Animation barres de compétences
     initSkillBars() {
         const observerOptions = { threshold: 0.5, rootMargin: '0px 0px -50px 0px' };
         const skillObserver = new IntersectionObserver((entries) => {
@@ -179,42 +187,28 @@ class Portfolio {
         document.querySelectorAll('.skill-category').forEach(sec => skillObserver.observe(sec));
     }
 
+    // Formulaire de contact
     handleContactForm(e) {
         e.preventDefault();
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData);
 
         if (!data.name || !data.email || !data.opportunity || !data.message) {
-            this.showNotification(
-                this.currentLang === 'fr'
-                    ? 'Veuillez remplir tous les champs obligatoires.'
-                    : 'Please fill in all required fields.',
-                'error'
-            );
+            this.showNotification('Veuillez remplir tous les champs obligatoires.', 'error');
             return;
         }
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(data.email)) {
-            this.showNotification(
-                this.currentLang === 'fr'
-                    ? 'Veuillez entrer une adresse email valide.'
-                    : 'Please enter a valid email address.',
-                'error'
-            );
+            this.showNotification('Veuillez entrer une adresse email valide.', 'error');
             return;
         }
 
-        this.showNotification(
-            this.currentLang === 'fr'
-                ? '✅ Message envoyé avec succès ! Amine Belghazi vous répondra sous 24h.'
-                : '✅ Message sent successfully! Amine Belghazi will respond within 24h.',
-            'success'
-        );
-
+        this.showNotification('✅ Message envoyé avec succès ! Amine Belghazi vous répondra sous 24h.', 'success');
         e.target.reset();
     }
 
+    // Notifications
     showNotification(message, type = 'info') {
         document.querySelectorAll('.notification').forEach(n => n.remove());
 
@@ -257,16 +251,10 @@ class Portfolio {
             notification.style.transform = 'translateX(100px)';
             setTimeout(() => notification.remove(), 300);
         }, 5000);
-
-        notification.addEventListener('click', () => {
-            notification.style.opacity = '0';
-            notification.style.transform = 'translateX(100px)';
-            setTimeout(() => notification.remove(), 300);
-        });
     }
 }
 
-// Global helpers
+// Fonctions globales
 function switchLanguage(lang) {
     if (window.portfolio) window.portfolio.switchLanguage(lang);
 }
@@ -274,67 +262,72 @@ function scrollToSection(sectionId) {
     if (window.portfolio) window.portfolio.scrollToSection(sectionId);
 }
 
+// Initialisation principale
 document.addEventListener('DOMContentLoaded', () => {
     window.portfolio = new Portfolio();
-});
 
-document.addEventListener('visibilitychange', () => {
-    const canvas = document.getElementById('particles-canvas');
+    // Animation fond neurones (corrigée)
+    const canvas = document.getElementById('neuron-canvas');
     if (!canvas) return;
-    canvas.style.display = document.hidden ? 'none' : 'block';
-});
 
-// Neon background animation
-const canvas = document.getElementById('neuron-canvas');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-const nodeCount = 80;
-const nodes = [];
-for (let i = 0; i < nodeCount; i++) {
-    nodes.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        move: function () {
-            this.x += this.vx; this.y += this.vy;
-            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-        }
-    });
-}
-const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-grad.addColorStop(0, '#00FFFF');
-grad.addColorStop(1, '#9B30FF');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-function drawNetwork() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const nodeCount = 80;
+    const nodes = [];
+
     for (let i = 0; i < nodeCount; i++) {
-        for (let j = i + 1; j < nodeCount; j++) {
-            const dx = nodes[i].x - nodes[j].x;
-            const dy = nodes[i].y - nodes[j].y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 200) {
-                ctx.strokeStyle = 'rgba(0,255,255,0.3)';
-                ctx.beginPath();
-                ctx.moveTo(nodes[i].x, nodes[i].y);
-                ctx.lineTo(nodes[j].x, nodes[j].y);
-                ctx.stroke();
+        nodes.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.5,
+            vy: (Math.random() - 0.5) * 0.5,
+            move: function () {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+        });
+    }
+
+    const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+    grad.addColorStop(0, '#00FFFF');
+    grad.addColorStop(1, '#9B30FF');
+
+    function drawNetwork() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < nodeCount; i++) {
+            for (let j = i + 1; j < nodeCount; j++) {
+                const dx = nodes[i].x - nodes[j].x;
+                const dy = nodes[i].y - nodes[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 200) {
+                    ctx.strokeStyle = 'rgba(0,255,255,0.3)';
+                    ctx.beginPath();
+                    ctx.moveTo(nodes[i].x, nodes[i].y);
+                    ctx.lineTo(nodes[j].x, nodes[j].y);
+                    ctx.stroke();
+                }
             }
         }
-    }
-    nodes.forEach(n => {
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, 3, 0, Math.PI * 2);
-        ctx.fill();
-        n.move();
-    });
-    requestAnimationFrame(drawNetwork);
-}
-drawNetwork();
 
+        nodes.forEach(n => {
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, 3, 0, Math.PI * 2);
+            ctx.fill();
+            n.move();
+        });
+
+        requestAnimationFrame(drawNetwork);
+    }
+
+    drawNetwork();
+});
+
+// Masquer le loading screen
 setTimeout(() => {
     const screen = document.getElementById('loading-screen');
     if (screen) {
@@ -343,6 +336,7 @@ setTimeout(() => {
     }
 }, 2500);
 
+// Menu mobile
 function toggleMenu() {
     const menu = document.querySelector('.nav-menu');
     menu.classList.toggle('active');
