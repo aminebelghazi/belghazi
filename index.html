@@ -1,171 +1,192 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amine Belghazi - Data Science, Modélisation & IA</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Amine Belghazi — Data Science & ML</title>
 
-    <!-- SEO -->
-    <meta name="description" content="Portfolio d'Amine Belghazi, Data Scientist et ingénieur en modélisation à Lyon. Passionné par la data science, le machine learning et la recherche appliquée.">
-    <meta name="keywords" content="Data Science, Machine Learning, Modélisation, IA, Lyon, Amine Belghazi, Portfolio">
+  <!-- SEO -->
+  <meta name="description" content="Portfolio d'Amine Belghazi, étudiant en Data Science & Machine Learning. Projets, compétences et contact."/>
+  <meta name="keywords" content="Data Science, Machine Learning, IA, Modélisation, Portfolio, Amine Belghazi"/>
 
-    <!-- Open Graph (partage LinkedIn / Twitter) -->
-    <meta property="og:title" content="Portfolio - Amine Belghazi">
-    <meta property="og:description" content="Data Scientist à Lyon spécialisé en modélisation et intelligence artificielle.">
-    <meta property="og:image" content="preview-image.jpg">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://aminebelghazi.fr">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Amine Belghazi — Data Science & ML"/>
+  <meta property="og:description" content="Portfolio: projets, compétences et contact."/>
+  <meta property="og:type" content="website"/>
 
-    <!-- Polices et styles -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="style.css">
-
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
+  <!-- Fonts & Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-<!-- Canvas principal du réseau neuronal (arrière-plan global) -->
-<canvas id="neuron-canvas" aria-hidden="true"></canvas>
+  <!-- Fond réseau neuronal -->
+  <canvas id="neuron-canvas" aria-hidden="true"></canvas>
 
-<!-- Loading Screen -->
-<div id="loading-screen" class="loading-screen" role="alert" aria-busy="true">
-    <h1 class="loading-text">Amine Belghazi</h1>
-</div>
+  <!-- Loading -->
+  <div id="loading-screen" class="loading-screen" role="status" aria-live="polite">
+    <h1 class="loading-text">Chargement…</h1>
+  </div>
 
-<header>
-    <!-- Navigation -->
+  <!-- Header / Nav -->
+  <header class="site-header">
     <nav id="navigation" class="navigation" aria-label="Navigation principale">
-        <div class="nav-container">
-            <button class="nav-logo" onclick="scrollToSection('hero')" aria-label="Retour à l’accueil">
-                <span class="logo-icon" aria-hidden="true"></span>
-                <span>Amine Belghazi</span>
-            </button>
+      <button class="nav-logo" onclick="scrollToSection('hero')" aria-label="Aller à l’accueil">
+        <span class="logo-dot" aria-hidden="true"></span>
+        <span>Amine Belghazi</span>
+      </button>
 
-            <!-- Hamburger mobile -->
-            <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Ouvrir le menu">
-                <span></span><span></span><span></span>
-            </button>
+      <button class="nav-hamburger" aria-label="Ouvrir le menu" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
 
-            <div class="nav-menu">
-                <button class="nav-link" onclick="scrollToSection('about')">À propos</button>
-                <button class="nav-link" onclick="scrollToSection('skills')">Compétences</button>
-                <button class="nav-link" onclick="scrollToSection('experience')">Projets</button>
-                <button class="nav-link" onclick="scrollToSection('contact')">Contact</button>
-            </div>
-        </div>
+      <div class="nav-menu" role="menu">
+        <button class="nav-link" onclick="scrollToSection('about')" role="menuitem">À propos</button>
+        <button class="nav-link" onclick="scrollToSection('skills')" role="menuitem">Compétences</button>
+        <button class="nav-link" onclick="scrollToSection('projects')" role="menuitem">Projets</button>
+        <button class="nav-link" onclick="scrollToSection('contact')" role="menuitem">Contact</button>
+      </div>
     </nav>
-</header>
+  </header>
 
-<main>
-    <!-- Hero Section -->
-   <section id="hero" class="hero-section">
-    <canvas id="particles-canvas"></canvas>
-    <div class="hero-content">
+  <main>
+    <!-- Hero -->
+    <section id="hero" class="hero-section" aria-label="Présentation">
+      <canvas id="particles-canvas" aria-hidden="true"></canvas>
+      <div class="hero-content">
         <p class="hero-greeting">Bonjour, je suis <span class="hero-name">Amine Belghazi</span></p>
-        <h1 class="hero-title">
-            <span class="title-word">Data</span>
-            <span class="title-word">Scientist</span>
-            <span class="title-word">&</span>
-            <span class="title-word">IA</span>
-        </h1>
-        <p class="hero-subtitle">Data Science • Modélisation • Machine Learning</p>
+        <h1 class="hero-title">Étudiant en Data Science & Machine Learning</h1>
+        <p class="hero-subtitle">Modélisation • Apprentissage automatique • Analyse de données</p>
+
         <p class="hero-description">
-            Étudiant en Master 2 Statistique, Modélisation et Science des Données à Lyon 1. Passionné par l’intelligence artificielle, la modélisation, le machine learning et l’analyse de données, je cherche un stage de fin d’études (avril 2026) pour appliquer mes compétences sur des projets concrets en Data Science et IA.
+          Étudiant en Master 2 Statistique, Modélisation et Science des Données (Lyon 1), passionné par la Data Science et le ML. Je cherche un stage de fin d’études (avril 2026) pour contribuer à des projets concrets en IA et modélisation.
         </p>
+
         <div class="hero-buttons">
-            <button class="btn btn-primary" onclick="scrollToSection('contact')">📧 Me contacter</button>
-            <button class="btn btn-secondary" onclick="scrollToSection('experience')">▶️ Voir mes projets</button>
-            <a href="CV_Amine_Belghazi.pdf" class="btn btn-outline" target="_blank">⬇️ Télécharger CV</a>
+          <button class="btn btn-primary" onclick="scrollToSection('contact')">📧 Me contacter</button>
+          <button class="btn btn-secondary" onclick="scrollToSection('projects')">▶️ Voir mes projets</button>
+          <a class="btn btn-outline" href="CV_Amine_Belghazi.pdf" target="_blank" rel="noopener">⬇️ Télécharger CV</a>
         </div>
-    </div>
-</section>
-
-
-    <!-- About Section -->
-    <section id="about" class="about-section" aria-label="À propos">
-        <div class="section-header">
-            <h2 class="section-title">Profil</h2>
-            <p class="section-subtitle">Passionné par la Data Science et la modélisation</p>
-        </div>
-        <div class="about-text">
-            <h3>Data Scientist avec formation mathématique solide</h3>
-            <p>
-                Étudiant en M2 Statistique, Modélisation et Science des Données à Lyon 1, j’ai acquis une solide maîtrise des outils d’analyse, de modélisation et de machine learning.
-            </p>
-            <h4>Domaines d'expertise :</h4>
-            <ul>
-                <li>Machine Learning & Deep Learning</li>
-                <li>Statistiques appliquées et modélisation</li>
-                <li>Analyse et visualisation de données</li>
-                <li>Python, R, SQL, MATLAB</li>
-            </ul>
-        </div>
+      </div>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="experience-section" aria-label="Projets académiques">
-        <div class="section-header">
-            <h2 class="section-title">Projets Académiques</h2>
-            <p class="section-subtitle">Travaux réalisés dans le cadre universitaire</p>
+    <!-- À propos -->
+    <section id="about" class="section" aria-label="À propos">
+      <div class="section-header">
+        <h2 class="section-title">À propos</h2>
+        <p class="section-subtitle">Qui je suis & ce que je fais</p>
+      </div>
+      <div class="about-grid reveal">
+        <div class="about-card">
+          <h3>Parcours</h3>
+          <p>Formation en statistiques et science des données (M2). Solides bases en probas, optimisation, inférence et modélisation.</p>
         </div>
-        <div class="experience-timeline">
-            <article class="timeline-item">
-                <div class="timeline-content">
-                    <h3>Suivi d’objet dans une vidéo à l’aide de réseaux de neurones</h3>
-                    <p>Comparaison entre segmentation variationnelle (TV-L1) et Deep Learning (OSVOS). Application de CNN et étude du flot optique en Python.</p>
-                </div>
-            </article>
-            <article class="timeline-item">
-                <div class="timeline-content">
-                    <h3>Étude des tests de normalité en statistique</h3>
-                    <p>Analyse des tests de normalité (Shapiro-Wilk, Chi², Kolmogorov-Smirnov) et lien entre la statistique de Shapiro-Wilk et la régression linéaire.</p>
-                </div>
-            </article>
+        <div class="about-card">
+          <h3>Ce qui me motive</h3>
+          <p>Transformer des données brutes en décisions utiles. J’aime construire des modèles explicables, robustes et utiles métier.</p>
         </div>
+        <div class="about-card">
+          <h3>Ce que je vise</h3>
+          <p>Stage Data Science/ML (avril 2026). Domaines d’intérêt : computer vision, NLP, séries temporelles, MLOps.</p>
+        </div>
+      </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills-section" aria-label="Compétences techniques">
-        <div class="section-header">
-            <h2 class="section-title">Compétences Techniques</h2>
-            <p class="section-subtitle">Outils et langages maîtrisés</p>
+    <!-- Compétences -->
+    <section id="skills" class="section" aria-label="Compétences techniques">
+      <div class="section-header">
+        <h2 class="section-title">Compétences</h2>
+        <p class="section-subtitle">Outils, langages & frameworks</p>
+      </div>
+
+      <div class="skills-grid reveal">
+        <div class="skill-card">
+          <h3>Langages</h3>
+          <p>Python, R, SQL, MATLAB</p>
+          <div class="bars">
+            <div class="bar"><span>Python</span><i data-width="90"></i></div>
+            <div class="bar"><span>R</span><i data-width="70"></i></div>
+            <div class="bar"><span>SQL</span><i data-width="75"></i></div>
+          </div>
         </div>
-        <div class="skills-grid">
-            <div class="skill-category"><h3>Langages</h3><p>Python, R, SQL, MATLAB</p></div>
-            <div class="skill-category"><h3>Frameworks</h3><p>scikit-learn, TensorFlow, PyTorch, Keras</p></div>
-            <div class="skill-category"><h3>Outils</h3><p>Git, Excel, Jupyter, LaTeX</p></div>
+
+        <div class="skill-card">
+          <h3>ML / DL</h3>
+          <p>Scikit-learn, PyTorch, TensorFlow, Keras</p>
+          <div class="bars">
+            <div class="bar"><span>Scikit-learn</span><i data-width="85"></i></div>
+            <div class="bar"><span>PyTorch</span><i data-width="70"></i></div>
+            <div class="bar"><span>TensorFlow</span><i data-width="65"></i></div>
+          </div>
         </div>
+
+        <div class="skill-card">
+          <h3>Outils</h3>
+          <p>Git, Jupyter, LaTeX, Excel</p>
+          <div class="bars">
+            <div class="bar"><span>Git</span><i data-width="80"></i></div>
+            <div class="bar"><span>Jupyter</span><i data-width="85"></i></div>
+            <div class="bar"><span>LaTeX</span><i data-width="70"></i></div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section" aria-label="Contact">
-        <div class="section-header">
-            <h2 class="section-title">Contact</h2>
-            <p class="section-subtitle">Entrons en contact !</p>
-        </div>
-        <div class="contact-info">
-            <p>📧 <a href="mailto:aminebelghazi@outlook.fr">aminebelghazi@outlook.fr</a></p>
-            <p>📱 <a href="tel:+33766074127">+33 7 66 07 41 27</a></p>
-            <p>💼 <a href="https://www.linkedin.com/in/aminebelghazi" target="_blank" rel="noopener">linkedin.com/in/aminebelghazi</a></p>
-            <p>📍 Villeurbanne, France</p>
-        </div>
+    <!-- Projets -->
+    <section id="projects" class="section" aria-label="Projets">
+      <div class="section-header">
+        <h2 class="section-title">Projets</h2>
+        <p class="section-subtitle">Sélection de travaux académiques</p>
+      </div>
+
+      <div class="projects-grid reveal">
+        <article class="project-card">
+          <div class="project-media"></div>
+          <h3>Suivi d’objet vidéo</h3>
+          <p>Comparaison TV-L1 vs OSVOS, CNN & flot optique en Python.</p>
+          <div class="tags"><span>Python</span><span>OpenCV</span><span>CNN</span></div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-media"></div>
+          <h3>Tests de normalité</h3>
+          <p>Étude Shapiro-Wilk, Khi², KS et lien avec régression linéaire.</p>
+          <div class="tags"><span>R</span><span>Stats</span><span>Théorie</span></div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-media"></div>
+          <h3>Prévision séries temporelles</h3>
+          <p>ARIMA vs LSTM, évaluation MAPE/MAE et validation temporelle.</p>
+          <div class="tags"><span>PyTorch</span><span>Time series</span></div>
+        </article>
+      </div>
     </section>
-</main>
 
-<!-- Footer -->
-<footer class="footer" aria-label="Pied de page">
-  <p>© 2025 Amine Belghazi - Tous droits réservés</p>
-  <button onclick="scrollToSection('hero')" class="back-to-top" aria-label="Retour en haut">⬆️ Haut de page</button>
-</footer>
+    <!-- Contact -->
+    <section id="contact" class="section" aria-label="Contact">
+      <div class="section-header">
+        <h2 class="section-title">Contact</h2>
+        <p class="section-subtitle">Discutons de vos projets</p>
+      </div>
 
-<!-- Scripts -->
-<script src="./script.js" defer></script>
+      <div class="contact-panel reveal">
+        <p>📧 <a href="mailto:aminebelghazi@outlook.fr">aminebelghazi@outlook.fr</a></p>
+        <p>💼 <a href="https://www.linkedin.com/in/aminebelghazi" target="_blank" rel="noopener">linkedin.com/in/aminebelghazi</a></p>
+        <p>📍 Villeurbanne, France</p>
+        <button class="btn btn-primary" onclick="copyEmail()">Copier mon email</button>
+      </div>
+    </section>
+  </main>
 
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 Amine Belghazi — Tous droits réservés</p>
+    <button class="back-to-top" onclick="scrollToSection('hero')" aria-label="Retour en haut">⬆️ Haut de page</button>
+  </footer>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
