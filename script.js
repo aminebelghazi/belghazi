@@ -10,7 +10,7 @@ class Portfolio {
     init() {
         this.handleLoading();
         setTimeout(() => {
-            this.initParticles();       // démarre après le fade-out
+            this.initParticles();       
             this.setupNavigation();
             this.setupEventListeners();
             this.initScrollAnimations();
@@ -39,6 +39,7 @@ class Portfolio {
 
         const ctx = canvas.getContext('2d');
         const particles = [];
+        const particleCount = window.innerWidth < 768 ? 30 : 60;
 
         const resizeCanvas = () => {
             canvas.width = canvas.offsetWidth;
@@ -47,7 +48,7 @@ class Portfolio {
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
-        for (let i = 0; i < 60; i++) {
+        for (let i = 0; i < particleCount; i++) {
             particles.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
@@ -73,7 +74,6 @@ class Portfolio {
             });
             requestAnimationFrame(animate);
         };
-
         animate();
     }
 
@@ -92,6 +92,12 @@ class Portfolio {
                 e.preventDefault();
                 const target = link.getAttribute('onclick')?.match(/'([^']+)'/)?.[1];
                 if (target) this.scrollToSection(target);
+
+                // Ferme le menu mobile après clic
+                const menu = document.querySelector('.nav-menu');
+                if (menu && menu.classList.contains('active')) {
+                    menu.classList.remove('active');
+                }
             });
         });
     }
@@ -155,8 +161,11 @@ class Portfolio {
 function switchLanguage(lang) {
     if (window.portfolio) window.portfolio.switchLanguage(lang);
 }
+
 function scrollToSection(sectionId) {
-    if (window.portfolio) window.portfolio.scrollToSection(sectionId);
+    if (window.portfolio && typeof window.portfolio.scrollToSection === 'function') {
+        window.portfolio.scrollToSection(sectionId);
+    }
 }
 
 /* --- Initialisation complète après chargement du DOM --- */
@@ -168,14 +177,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
+
+    let gradient;
     const resizeCanvas = () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+        gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+        gradient.addColorStop(0, '#00FFFF');
+        gradient.addColorStop(1, '#9B30FF');
     };
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    const nodeCount = 80;
+    const nodeCount = window.innerWidth < 768 ? 50 : 80;
     const nodes = Array.from({ length: nodeCount }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
@@ -188,10 +202,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
         }
     }));
-
-    const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-    gradient.addColorStop(0, '#00FFFF');
-    gradient.addColorStop(1, '#9B30FF');
 
     function drawNetwork() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -224,5 +234,8 @@ document.addEventListener('DOMContentLoaded', () => {
 /* --- Menu mobile --- */
 function toggleMenu() {
     const menu = document.querySelector('.nav-menu');
-    if (menu) menu.classList.toggle('active');
+    if (menu) {
+        const isActive = menu.classList.toggle('active');
+        menu.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+    }
 }
