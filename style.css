@@ -45,8 +45,12 @@ body {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  transition: opacity 0.2s ease;
 }
+
+.nav-logo span {
+  color: #00ffff; /* ✅ assure que le texte intérieur est bien cyan */
+}
+
 .nav-logo:hover {
   opacity: 0.8;
 }
